@@ -14,15 +14,16 @@
 }
 
 .top form {
+    display: flex;  
+    justify-content: space-between;  
     position: relative;
     align-items: center;
-    width: 250px;
+    width: 450px;
 }
 
 
 .top form i {
     position: absolute;
-    padding-top: 3.5%;
     left: 10px;                     
     color: gray;
 }
@@ -33,6 +34,7 @@
     height: 35px;
     box-sizing: border-box;
 }
+
 
 
 
