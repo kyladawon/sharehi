@@ -1,0 +1,58 @@
+.top {
+    display: flex; 
+    justify-content: center;
+    gap: 20px;
+}
+
+.top h4 {
+    margin: 0;
+}
+
+.Trending-inner {
+    width:15%;
+    margin-right:5%;
+    padding:1rem 1rem 1.5rem 1rem;
+    float:left;
+    background-color:#f8f8f8;
+    border:1px solid #ccc;
+    margin-bottom:3rem;
+    
+}
+
+.Trendin-me{
+
+    content:'';
+    display:block;
+    clear:left;
+
+}
+
+.Trending-inner img {
+    width: 100%;
+    display: block;
+}
+
+.bottom {
+    display: flex;  /* Flexbox 사용 */
+    justify-content: center;  /* 중앙 정렬 */
+    gap: 20px;  /* 요소 간의 간격 */
+    width: 100%;  /* 전체 너비 사용 */
+    padding: 1rem;  /* 여백 추가 (선택 사항) */
+}
+
+.bottom footer {
+    display: flex;  /* footer 내부 요소들을 flexbox로 배치 */
+    gap: 20px;  /* 요소 간의 간격 */
+}
+
+nav {
+    display: flex;  /* nav 내부의 링크들을 flexbox로 배치 */
+    gap: 20px;  /* 링크 간의 간격 */
+}
+
+a {
+    text-decoration: none;  /* 링크의 기본 밑줄 제거 */
+    color: black;  /* 링크 색상 설정 */
+}
+
+
