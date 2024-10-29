@@ -1,16 +1,56 @@
+.search {
+    width:100%;
+    height:100vh;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
 .top {
-    display: flex; 
-    justify-content: center;
+    display: flex;  
+    justify-content: space-between;
+    align-items: center;  
     gap: 20px;
 }
 
+.top form {
+    position: relative;
+    align-items: center;
+    width: 250px;
+}
+
+
+.top form i {
+    position: absolute;
+    padding-top: 3.5%;
+    left: 10px;                     
+    color: gray;
+}
+
+.top form input {
+    width: 100%;
+    padding-left: 30px;            
+    height: 35px;
+    box-sizing: border-box;
+}
+
+
+
 .top h4 {
     margin: 0;
+    left: 0;
 }
+
+
+.middle h2{
+    float: left
+}
+
 
 .Trending-inner {
     width:15%;
-    margin-right:5%;
+    margin-right:4%;
+    margin-left: 3%;
     padding:1rem 1rem 1.5rem 1rem;
     float:left;
     background-color:#f8f8f8;
@@ -19,12 +59,14 @@
     
 }
 
+.Trending-inner:nth-child(4n){
+    margin-right:0;
+ }
+
 .Trendin-me{
-
-    content:'';
-    display:block;
-    clear:left;
-
+    display: flex;  
+    justify-content: space-between;
+    align-items: center;  
 }
 
 .Trending-inner img {
@@ -33,14 +75,16 @@
 }
 
 .bottom {
-    background-color: aquamarine;
+    background-color: rgb(2, 81, 55);
     display: flex;  
-    justify-content: center;  
+    justify-content: space-between;
+    align-items: center;    
     gap: 20px;  
-    width: 100%;  
+    width: 98%;  
     padding: 1rem;
     position: fixed;
     bottom: 0;
+    color: #f8f8f8;
 }
 
 .bottom footer {
@@ -58,4 +102,7 @@ a {
     color: black;  
 }
 
+nav a{
+    color:#f8f8f8;
+}
 
