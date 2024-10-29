@@ -7,10 +7,15 @@
 }
 
 .top {
+    height: 85px;
     display: flex;  
     justify-content: space-between;
     align-items: center;  
     gap: 20px;
+}
+
+.top h4{
+    padding-left: 40px;
 }
 
 .top form {
@@ -18,7 +23,7 @@
     justify-content: space-between;  
     position: relative;
     align-items: center;
-    width: 450px;
+    width: 800px;
 }
 
 
@@ -29,13 +34,21 @@
 }
 
 .top form input {
+    background-color:#f8f8f8;
     width: 100%;
-    padding-left: 30px;            
+    padding-left: 30px;    
+    margin-right: 20px;        
     height: 35px;
-    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid black;
 }
 
-
+.top form button{
+    background-color: rgb(2, 81, 55);
+    color: #f8f8f8;
+    height: 35px;
+    width: 100px;
+}
 
 
 .top h4 {
@@ -43,9 +56,15 @@
     left: 0;
 }
 
+.top a{
+    color: coral;
+    padding-right: 40px;
+}
 
 .middle h2{
-    float: left
+    float: left;
+    margin-bottom: 40px;
+    margin-left: 28.46px;
 }
 
 
@@ -87,11 +106,26 @@
     position: fixed;
     bottom: 0;
     color: #f8f8f8;
+    margin-left: -8px;
+    height: 70px;
+
 }
+
+
 
 .bottom footer {
     display: flex;  
     gap: 20px;  
+}
+
+.bottomicon {
+    width: 350px;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+.bottomicon i {
+    padding: 8px;
 }
 
 nav {
