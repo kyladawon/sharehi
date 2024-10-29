@@ -33,26 +33,29 @@
 }
 
 .bottom {
-    display: flex;  /* Flexbox 사용 */
-    justify-content: center;  /* 중앙 정렬 */
-    gap: 20px;  /* 요소 간의 간격 */
-    width: 100%;  /* 전체 너비 사용 */
-    padding: 1rem;  /* 여백 추가 (선택 사항) */
+    background-color: aquamarine;
+    display: flex;  
+    justify-content: center;  
+    gap: 20px;  
+    width: 100%;  
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
 }
 
 .bottom footer {
-    display: flex;  /* footer 내부 요소들을 flexbox로 배치 */
-    gap: 20px;  /* 요소 간의 간격 */
+    display: flex;  
+    gap: 20px;  
 }
 
 nav {
-    display: flex;  /* nav 내부의 링크들을 flexbox로 배치 */
-    gap: 20px;  /* 링크 간의 간격 */
+    display: flex;  
+    gap: 20px;
 }
 
 a {
-    text-decoration: none;  /* 링크의 기본 밑줄 제거 */
-    color: black;  /* 링크 색상 설정 */
+    text-decoration: none; 
+    color: black;  
 }
 
 
