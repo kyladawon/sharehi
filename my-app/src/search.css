@@ -1,6 +1,6 @@
 body {
     overflow: hidden;
-  }
+}
 
 .search {
     width:100%;
@@ -73,10 +73,10 @@ body {
 
 
 .Trending-inner {
-    width:17.5%;
-    height: 375px;
+    width:15%;
+    height: 325px;
     margin-right:4%;
-    margin-left: 3%;
+    margin-left: 5%;
     float:left;
     background-color:white;
     border:1px solid #ccc;
@@ -100,12 +100,12 @@ body {
 .Trendin-me{
     display: flex;  
     justify-content: space-between;
-    align-items: left;  
+    align-items: center;  
 }
 
 .Trending-inner img {
     width: 100%;
-    height: 200px; 
+    height: 170px; 
     object-fit: cover;
     display: block;
 }
@@ -133,7 +133,7 @@ body {
     bottom: 0;
     color: white;
     margin-left: -8px;
-    height: 70px;
+    height: 100px;
 
 }
 
@@ -161,7 +161,6 @@ body {
 .bottomicon i {
     text-decoration: none;
     color:white;
-
     padding: 8px;
 }
 
