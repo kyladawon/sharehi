@@ -1,69 +1,11 @@
-body {
-    overflow: hidden;
-}
-
 .search {
-    width:100%;
-    height:100vh;
+
     justify-content:center;
     align-items:center;
     text-align:center;
 }
 
-.top {
-    height: 85px;
-    display: flex;  
-    justify-content: space-between;
-    align-items: center;  
-    gap: 20px;
-}
 
-.top h4{
-    padding-left: 40px;
-}
-
-.top form {
-    display: flex;  
-    justify-content: space-between;  
-    position: relative;
-    align-items: center;
-    width: 800px;
-}
-
-
-.top form i {
-    position: absolute;
-    left: 10px;                     
-    color: gray;
-}
-
-.top form input {
-    background-color:#ccc;
-    width: 100%;
-    padding-left: 30px;    
-    margin-right: 20px;        
-    height: 35px;
-    border: none;
-    border-bottom: 2px solid black;
-}
-
-.top form button{
-    background-color:#7A865D;
-    color: white;
-    height: 35px;
-    width: 100px;
-}
-
-
-.top h4 {
-    margin: 0;
-    left: 0;
-}
-
-.top a{
-    color: coral;
-    padding-right: 40px;
-}
 
 .middle h2{
     float: left;
@@ -98,7 +40,7 @@ body {
  }
 
 .Trendin-me{
-    display: flex;  
+    
     justify-content: space-between;
     align-items: center;  
 }
@@ -120,63 +62,6 @@ body {
     font-size: 70%;
 }
 
-
-
-.bottom {
-    background-color: #7A865D;  
-    justify-content: space-between;
-    align-items: center;    
-    gap: 20px;  
-    width: 98%;  
-    padding: 1rem;
-    position: fixed;
-    bottom: 0;
-    color: white;
-    margin-left: -8px;
-    height: 100px;
-
+.clear {
+    clear: both;
 }
-
-.firstline {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;  
-}
-
-.sharehi {
-    margin-left: 90px;
-}
-
-.bottom footer {
-    display: flex;  
-    gap: 20px;  
-}
-
-.bottomicon {
-    width: 350px;
-    justify-content: space-between;
-    align-items: center; 
-}
-
-.bottomicon i {
-    text-decoration: none;
-    color:white;
-    padding: 8px;
-}
-
-nav {
-    display: flex;  
-    gap: 20px;
-}
-
-a {
-    text-decoration: none; 
-    color: black;  
-}
-
-
-
-nav a{
-    color:white;
-}
-
