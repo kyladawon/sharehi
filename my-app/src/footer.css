@@ -1,4 +1,6 @@
 .footercontainer {
+    position: relative;
+    transform: translateY(0%);
     text-align:center;
     width:100%;
     height:130px;
