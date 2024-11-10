@@ -1,5 +1,15 @@
+footer {
+    bottom: 0;
+    transform: translateY(0%);
+}
+
+.footer,
+.push {
+  height: 50px;
+}
+
 .footercontainer {
-    position: relative;
+    position: absolute;
     transform: translateY(0%);
     text-align:center;
     width:100%;
