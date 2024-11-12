@@ -16,7 +16,7 @@ const EmailSent = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           <button
             type="submit"
-            className="w-full bg-customGreen text-white py-2 rounded-md hover:bg-black-600 transition duration-200"
+            className="w-full bg-customGreen text-white py-2 rounded-md hover:bg-black transition duration-200"
           >
             Back to Home
           </button>
