@@ -1,12 +1,11 @@
 footer {
     bottom: 0;
     transform: translateY(0%);
+    height:130px;
+    margin-top: 85px;
 }
 
-.footer,
-.push {
-  height: 50px;
-}
+
 
 .footercontainer {
     position: absolute;

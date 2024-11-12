@@ -21,7 +21,6 @@ body {
 
 .middle {
     padding-bottom: 130px;
-    padding-top: 85px;
     height: 100%;
 }
 
@@ -70,7 +69,7 @@ body {
 }
 
 .Trending-inner a{
-    color: coral;
+    color: #F5A65B;
     margin-top: 70px;
 }
 
