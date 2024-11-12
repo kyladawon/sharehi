@@ -6,6 +6,7 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import Forgotpassword from './pages/Forgotpassword'
 import EmailSent from './pages/EmailSent'
+import Search from './pages/Search'
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path='/login' element={<Login />}></Route>
         <Route path='/forgotpassword' element={<Forgotpassword />}></Route>
         <Route path='/emailsent' element={<EmailSent />}></Route>
+        <Route path='/search' element={<Search />}></Route>
 
       </Routes>
     </BrowserRouter>
