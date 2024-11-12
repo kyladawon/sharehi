@@ -14,14 +14,14 @@ const Search = () => {
                     <div className="clear-both"></div>
                     <div className="Trending-me flex flex-wrap justify-between items-center">
                         {[...Array(4)].map((_, index) => (
-                            <div key={index} className="Trending-inner w-1/5 h-80 m-5 bg-white border border-gray-300 text-left rounded-lg shadow-lg">
-                                <img src="sharehi/my-app/public/sample_image.jpg"
+                            <div key={index} className="Trending-inner w-1/5 h-auto m-5 bg-white border border-gray-300 text-left rounded-lg shadow-lg">
+                                <img src="/sample_image.jpg"
                                 alt="Trending"
                                 className="w-full h-40 object-cover rounded-t-lg">
                                 </img>
-                                <div className="p-4">
+                                <div className="p-4 pb-8">
                                 <strong className="text-lg font-medium text-gray-700">Title</strong>
-                                <p className="Explanation mt-2 text-sm text-gray-600">bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla.</p>
+                                <p className="Explanation mt-2 mb-4 text-sm text-gray-600">bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla.</p>
                                   <p className="mt-8 font-semibold text-sm">
                                     <a href="#" className="text-customGreen hover:underline">
                                         More info <i className="fa-solid fa-arrow-right"></i>
