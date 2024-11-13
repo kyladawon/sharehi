@@ -1,29 +1,70 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchHeader from '../components/SearchHeader';
 import Footer from '../components/Footer';
-import { useProfile } from '../contexts/ProfileContext';
+import { auth, db } from '../firebase';
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
 
 const DonatorProfileEdit = () => {
-    const { profile, updateProfile } = useProfile();
-    const [orgname, setOrgname] = useState(profile.orgname);
-    const [description, setDescription] = useState(profile.description);
-    const [contactinfo, setContactInfo] = useState(profile.contactinfo);
+    const [username, setUsername] = useState('');
+    const [description, setDescription] = useState('');
+    const [contactinfo, setContactInfo] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [profileData, setProfileData] = useState({ username: '', contactinfo: '', description: '' });
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const fetchProfile = async () => {
+            const user = auth.currentUser;
+            if (user) {
+                const docRef = doc(db, "users", user.uid);
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    setProfileData({
+                        username: data.username || '',
+                        contactinfo: data.contactinfo || data.email || '',
+                        description: data.description || '',
+                    });
+                    setUsername(data.username || '');
+                    setContactInfo(data.contactinfo || data.email || '');
+                    setDescription(data.description || '');
+                }
+            }
+            setLoading(false);
+        };
 
-const handleEdit = (e) => {
-    e.preventDefault();
-    if (!orgname || !description || !contactinfo) {
-        setError('Please fill in all fields');
-        return;
-    }
-    updateProfile({ orgname, description, contactinfo });
-    console.log('Updated the RecieverProfile with', { orgname, description, contactinfo});
-    setError('');
-    navigate('/donatorprofile');
-};
+        fetchProfile();
+    }, []);
+
+    const handleEdit = async (e) => {
+        e.preventDefault();
+        if (!username && !description && !contactinfo) {
+            setError('Please fill in all fields');
+            return;
+        }
+
+        try {
+            const user = auth.currentUser;
+            if (user) {
+                await setDoc(doc(db, "users", user.uid), {
+                    username: username || profileData.username,
+                    description: description || profileData.description,
+                    contactinfo: contactinfo || profileData.contactinfo,
+                }, { merge: true });
+                console.log('Updated profile:', { username, description, contactinfo });
+                setError('');
+                navigate('/donatorprofile');
+            }
+        } catch (error) {
+            console.error("Error updating profile:", error.message);
+            setError("Failed to save changes. Please try again.");
+        }
+    };
+
+    if (loading) return <p>Loading profile...</p>;
+
     return (
         <>
         <SearchHeader />
@@ -33,12 +74,13 @@ const handleEdit = (e) => {
                 {error && <p className="text-red-500 text-center mb-4">{error}</p>}
                 <form onSubmit={handleEdit} className="space-y-6">
                     <div>
-                        <label htmlFor="orgname" className="block text-gray-700 font-medium mb-1">Your Name:</label>
+                        <label htmlFor="username" className="block text-gray-700 font-medium mb-1">Your Name:</label>
                         <input
                             type="text"
-                            id="orgname"
-                            value={orgname}
-                            onChange={(e) => setOrgname(e.target.value)}
+                            id="username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            placeholder={profileData.username || "Enter your name"}
                             className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:border-customGreen"
                             required
                         />
@@ -49,6 +91,7 @@ const handleEdit = (e) => {
                             id="description"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
+                            placeholder={profileData.description || "A brief description about yourself"}
                             className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:border-customGreen"
                             rows="4"
                             required
@@ -61,17 +104,16 @@ const handleEdit = (e) => {
                             id="contactinfo"
                             value={contactinfo}
                             onChange={(e) => setContactInfo(e.target.value)}
+                            placeholder={profileData.contactinfo || "Enter your contact information"}
                             className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:border-customGreen"
                             required
                         />
                     </div>
                     <div className="flex justify-end mt-4">
                     <button
-                        href="/donatorprofile"
                         type="submit"
                         className="w-auto px-6 bg-customGreen text-white py-3 rounded-md hover:bg-black transition duration-200"
-                    >
-                        Save Changes
+                    >Save Changes
                     </button>
                     </div>
                 </form>

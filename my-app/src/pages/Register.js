@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { auth, db } from '../firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
 import LandingFooter from '../components/LandingFooter';
 import LandingHeader from '../components/LangingHeader';
 
@@ -8,16 +11,36 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e,role) => {
     e.preventDefault();
     if (!username || !email || !password) {
       setError('Please fill in all fields');
       return;
     }
-    console.log('Registering with:', { username, email, password });
     setError('');
-    // You would add your registration logic here (e.g., API call)
+    try {
+      // Create user in Firebase Auth
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Add user data to Firestore
+      await setDoc(doc(db, 'users', user.uid), {
+        username,
+        email,
+        role
+      });
+      console.log(`User registered as ${role}`);
+      navigate('/login');
+    } catch (error) {
+      if (error.code === 'auth/email-already-in-use') {
+        setError("The email address is already in use. Please try a different one or log in.");
+      } else {
+        console.error("Error registering user:", error.message);
+        setError(error.message);
+      }
+    }
   };
 
   return (
@@ -64,16 +87,16 @@ const Register = () => {
             />
           </div>
           <button
-            type="submit"
+            type="button"
+            onClick={(e) => handleSubmit(e, 'receiver')}
             className="w-full bg-customGreen text-white py-2 rounded-md active:bg-black transition duration-200"
-          >
-            <Link to="/login">Sign Up as Receiver</Link>
+          >Sign Up as Receiver
           </button>
           <button
-            type="submit"
+            type="button"
+            onClick={(e) => handleSubmit(e, 'donator')}
             className="w-full bg-customGreen text-white py-2 rounded-md active:bg-black transition duration-200"
-          >
-            <Link to="/login">Sign Up as Donator</Link>
+          >Sign Up as Donator
           </button>
         </form>
         <div className="text-center text-orange-500 mt-4">

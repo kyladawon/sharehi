@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth, db } from '../firebase';
+import { doc, getDoc } from 'firebase/firestore';
 import LandingHeader from '../components/LangingHeader';
 import LandingFooter from '../components/LandingFooter';
 
@@ -7,15 +10,33 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleLogin = async (e, role) => {
     e.preventDefault();
-    if (!email || !password) {
-      setError('Please fill in all fields');
-      return;
-    }
-    console.log('Logging in with:', { email, password });
     setError('');
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      const userData = userDoc.data();
+
+      if (userData.role === role) {
+        // Redirect based on the user's role
+        if (role === 'receiver') {
+          navigate('/recieverprofile');
+        } else {
+          navigate('/search');
+        }
+      } else {
+        setError("Role does not match. Please select the correct role.");
+      }
+    } catch (error) {
+      // Handle errors (e.g., wrong email/password, user not found)
+      console.error("Login error:", error.message);
+      setError("Invalid email or password. Please try again.");
+    }
   };
 
   return (
@@ -28,7 +49,7 @@ const Login = () => {
         <p className="text-gray-700 font-medium text-center mb-8">Please log in to continue</p>
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
       </div>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form className="space-y-6">
           <div>
             <label htmlFor="email" className="block text-gray-700 font-medium mb-1">Email Address:</label>
             <input
@@ -58,15 +79,15 @@ const Login = () => {
           </div>
           <button
             type="submit"
+            onClick={(e) => handleLogin(e, 'receiver')}
             className="w-full bg-customGreen text-white py-2 rounded-md hover:bg-black transition duration-200"
-          >
-            <Link to="/recieverprofile">Login as Receiver</Link>
+          >Login as Receiver
           </button>
           <button
             type="submit"
+            onClick={(e) => handleLogin(e, 'donator')}
             className="w-full bg-customGreen text-white py-2 rounded-md hover:bg-black transition duration-200"
-          >
-            <Link to="/search">Login as Donator</Link>
+          >Login as Donator
           </button>
         </form>
         <div className="text-center text-orange-500 mt-4">

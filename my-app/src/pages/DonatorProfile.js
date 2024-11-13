@@ -1,13 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { auth, db } from '../firebase';
+import { doc, getDoc } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 import SearchHeader from '../components/SearchHeader';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
-import { useProfile } from '../contexts/ProfileContext';
 
 const DonatorProfile = () => {
-    const { profile } = useProfile();
-    const defaultOrgName = "Your Name";
-    const defaultDescription = "A brief description of yourself.";
+    const [profile, setProfile] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const docRef = doc(db, "users", user.uid);
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    setProfile(docSnap.data());
+                } else {
+                    console.log("No such document!");
+                }
+            }
+            setLoading(false); // Stop loading whether user is found or not
+        });
+
+        return () => unsubscribe(); // Cleanup listener on component unmount
+    }, []);
+
+    if (loading) {
+        return <p>Loading profile...</p>;
+    }
+
     return (
         <>
         <SearchHeader />
@@ -20,17 +43,22 @@ const DonatorProfile = () => {
                     <Link to="/donatoredit">Edit Profile</Link>
                 </button>
                 <div className="text-center mt-4">
-                    <h1 className="text-3xl font-semibold text-center mb-6">
-                        {profile.orgname || defaultOrgName}
-                    </h1>
-                    <p className="text-gray-700 font-medium text-center mb-8">
-                        {profile.description || defaultDescription}
-                    </p>
-                    <p className="text-gray-700 font-medium text-center mb-8">
-                        {profile.contactinfo || "Contact information not available"}
-                    </p>
+                    {profile ? (
+                        <div>
+                            <h1 className="text-3xl font-semibold text-center mb-6">
+                                {profile.username}
+                            </h1>
+                            <p className="text-gray-700 font-medium text-center mb-8">
+                                {profile.description || "A brief description of yourself."}
+                            </p>
+                            <p className="text-gray-700 font-medium text-center mb-8">
+                                {profile.contactinfo || "No contact information available."}
+                            </p>
+                        </div>
+                    ) : (
+                        <p>No profile data found.</p>
+                    )}
                 </div>
-
                 <div className="flex justify-center mt-8">
                     <button
                         type="button"

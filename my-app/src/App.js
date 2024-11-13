@@ -1,6 +1,5 @@
 // pages/_app.js
 import './index.css'
-import { ProfileProvider } from './contexts/ProfileContext';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './pages/Home'
 import Register from './pages/Register'
@@ -19,7 +18,6 @@ import DonatorProfileEdit from './pages/DonatorProfileEdit';
 function App() {
 
   return (
-    <ProfileProvider>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />}></Route>
@@ -36,7 +34,6 @@ function App() {
         <Route path='/donatoredit' element={<DonatorProfileEdit />}></Route>
       </Routes>
     </BrowserRouter>
-    </ProfileProvider>
   )
 }
 
