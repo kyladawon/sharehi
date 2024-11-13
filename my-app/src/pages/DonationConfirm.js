@@ -26,12 +26,14 @@ const DonationConfirm = () => {
           <p className="text-gray-700 font-medium text-center mb-8">Your kindess has made the world into a better place.</p>
         </div>
           <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="flex justify-center mb-6">
             <button
               type="submit"
-              className="w-full bg-customGreen text-white py-2 rounded-md hover:bg-black transition duration-200"
+              className="w-auto px-4 bg-white text-customGreen border border-customGreen py-2 rounded-md shadow-lg hover:bg-gray-500 hover:text-white transition duration-200"
             >
               <Link to="/search">Back to Search</Link>
             </button>
+          </div>
           </form>
         </div>
       </main>
