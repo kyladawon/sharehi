@@ -63,19 +63,18 @@ const Register = () => {
             type="submit"
             className="w-full bg-customGreen text-white py-2 rounded-md active:bg-black transition duration-200"
           >
-            Sign Up as Receiver
+            <Link to="/">Sign Up as Receiver</Link>
           </button>
           <button
             type="submit"
             className="w-full bg-customGreen text-white py-2 rounded-md active:bg-black transition duration-200"
           >
-            Sign Up as Donator
+            <Link to="/search">Sign Up as Donator</Link>
           </button>
         </form>
-        <div className="text-center mt-4">
+        <div className="text-center text-orange-500 mt-4">
           <span>Already have an account? </span>
-          <Link href="/login">
-            <a className="text-customGreen hover:underline">Login</a>
+          <Link to="/login"className="text-orange-500 hover:underline">Login
           </Link>
         </div>
       </div>

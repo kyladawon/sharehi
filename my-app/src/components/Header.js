@@ -1,10 +1,13 @@
 // components/Header.js
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
     <header className="w-full h-20 flex justify-between items-center text-center px-10 bg-white border-b border-gray-200">
-      <h4 className="text-2xl font-semibold text-gray-700">Share Hi</h4>
+      <h4 className="text-2xl font-semibold text-gray-700">
+        <Link to="/">Share Hi</Link>
+      </h4>
       <form action="/search" method="GET" className="flex items-center w-2/3">
         <i className="fa-solid fa-magnifying-glass absolute ml-3 text-gray-400"></i>
         <input

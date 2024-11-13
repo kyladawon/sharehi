@@ -46,24 +46,29 @@ const Login = () => {
               required
               className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:border-customGreen"
             />
+            <div className="text-right mt-2">
+              <Link to="/forgotpassword" className="text-sm text-orange-500 hover:underline">
+                Forgot password?
+              </Link>
+            </div>
           </div>
           <button
             type="submit"
             className="w-full bg-customGreen text-white py-2 rounded-md hover:bg-black transition duration-200"
           >
-            Login as Receiver
+            <Link to="/">Login as Receiver</Link>
           </button>
           <button
             type="submit"
             className="w-full bg-customGreen text-white py-2 rounded-md hover:bg-black transition duration-200"
           >
-            Login as Donator
+            <Link to="/search">Login as Donator</Link>
           </button>
         </form>
-        <div className="text-center mt-4">
-          <span>Don't have an account? </span>
-          <Link href="/register">
-            <a className="text-customGreen hover:underline">Sign up</a>
+        <div className="text-center text-orange-500 mt-4">
+          <span>No account yet? </span>
+          <Link to="/register" className="text-orange-500 hover:underline">
+            Sign up
           </Link>
         </div>
       </div>
