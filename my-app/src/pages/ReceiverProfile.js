@@ -133,17 +133,23 @@ const RecieverProfile = () => {
                 <div className="text-center mt-4">
                     <h1 className="text-3xl font-semibold text-center mb-6">What we need ..</h1>
                 </div>
-                <div className="w-full h-96 bg-white-500 rounded-md mb-6 flex flex-col space-y-2 p-4 overflow-y-auto">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="w-full h-96 bg-white-500 rounded-md mb-6 p-4 overflow-y-auto">
+                <div className="grid grid-cols-3 gap-2 h-full">
                     {products.length > 0 ? (
                         products.map((product, index) => (
-                            <div key={index} className="bg-white border border-gray-300 rounded-md p-4 shadow-sm">
-                                <p className="font-medium">Type: {product.type || "N/A"}</p>
-                                <p className="text-gray-600">Quantity: {product.quantity || "N/A"}</p>
+                            <div
+                            key={index} 
+                            className="relative flex flex-col justify-between p-2 bg-white border border-gray-300 rounded-md shadow-sm h-20 px-2">
+                                <span className="text-xs text-gray-500 mb-1">{product.additionalDescription || "Additional Info"}</span>
+                                <span className="font-medium font-semibold px-5">{product.type || "N/A"}</span>
+                                <span className="text-xs text-gray-500 mt-1">{product.description || "No description"}</span>
+                                <button className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-400 text-white border rounded-md px-1 py-0.2">
+                                    {product.quantity || "N/A"}
+                                </button>
                             </div>
                         ))
                     ) : (
-                        <p className="text-gray-500">No products added yet.</p>
+                        <p className="text-gray-500 col-span-2 text-center">No products added yet.</p>
                     )}
                 </div>
                 </div>
