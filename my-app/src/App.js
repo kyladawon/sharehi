@@ -9,6 +9,7 @@ import EmailSent from './pages/EmailSent'
 import Search from './pages/Search'
 import RecieverProfile from './pages/ReceiverProfile'
 import RecieverProfileEdit from './pages/RecieverProfileEdit'
+import ReceiverProfileViewOnly from './pages/ReceiverProfileViewOnly'
 import Setting from './pages/Setting'
 import DonatorSetting from './pages/DonatorSetting';
 import DonatorProfile from './pages/DonatorProfile';
@@ -32,6 +33,7 @@ function App() {
         <Route path='/donatorsetting' element={<DonatorSetting />}></Route>
         <Route path='/donatorprofile' element={<DonatorProfile />}></Route>
         <Route path='/donatoredit' element={<DonatorProfileEdit />}></Route>
+        <Route path="/receiver/:receiverId/view" element={<ReceiverProfileViewOnly />} />
       </Routes>
     </BrowserRouter>
   )
