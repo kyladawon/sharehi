@@ -91,40 +91,7 @@ const Search = () => {
                         </div>
                     )}
                 </div>
-                <div className="food-section pb-20 h-full">
-                    <h2 className="text-2xl font-semibold float-left mb-6 ml-12"># Food</h2>
-                    <div className="clear-both"></div>
-                    <div className="Trending-me flex flex-wrap justify-between items-center">
-                        {items.slice(0, visibleCount).map((item, index) => (
-                            <div key={item.id} className="Trending-inner w-1/5 h-auto m-ß bg-white border border-gray-300 text-left rounded-lg shadow-lg">
-                                <img src={item.imgSrc}
-                                alt="Trending"
-                                className="w-full h-40 object-cover rounded-t-lg">
-                                </img>
-                                <div className="p-4 pb-8">
-                                <strong className="text-lg font-medium text-gray-700">{item.title}</strong>
-                                <p className="Explanation mt-2 mb-4 text-sm text-gray-600">{item.description}</p>
-                                  <p className="mt-8 font-semibold text-sm">
-                                    <a href="#" className="text-customGreen hover:underline">
-                                        More info <i className="fa-solid fa-arrow-right"></i>
-                                    </a>
-                                  </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                    {visibleCount < items.length && (
-                        <div className="flex justify-end mt-3 mr-10">
-                            <p className="font-semibold text-medium text-customGreen hover:underline"
-                                onClick={loadMoreItems}
-                            >
-                                Load More
-                            </p>
-                        </div>
-                    )}
-                </div>
             </div>
-            
         </main>
         <Footer />
         </>
