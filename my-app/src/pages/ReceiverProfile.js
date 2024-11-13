@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+import LandingFooter from '../components/LandingFooter';
 import { Link } from 'react-router-dom';
 import { useProfile } from '../contexts/ProfileContext';
 
@@ -48,7 +48,7 @@ const RecieverProfile = () => {
                 </div>
             </div>
         </main>
-        <Footer />
+        <LandingFooter />
         </>
       )
 }

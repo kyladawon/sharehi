@@ -1,5 +1,5 @@
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+import LandingFooter from '../components/LandingFooter';
 
 const Setting = () => {
     return (
@@ -27,7 +27,7 @@ const Setting = () => {
                 </div>
             </div>
         </main>
-        <Footer />
+        <LandingFooter />
         </>
       )
 }

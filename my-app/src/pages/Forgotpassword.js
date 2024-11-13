@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import LandingHeader from '../components/LangingHeader';
+import LandingFooter from '../components/LandingFooter';
 
 const Forgotpassword = () => {
   const [email, setEmail] = useState('');
@@ -16,6 +18,8 @@ const Forgotpassword = () => {
   };
 
   return (
+    <>
+    <LandingHeader />
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <div className="max-w-lg w-full p-10 bg-white rounded-lg shadow-md border border-gray-200">
       <div className="text-center mt-4">
@@ -44,6 +48,8 @@ const Forgotpassword = () => {
         </form>
       </div>
     </div>
+    <LandingFooter />
+    </>
   );
 };
 

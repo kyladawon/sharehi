@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+import LandingFooter from '../components/LandingFooter';
 import { useProfile } from '../contexts/ProfileContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -101,7 +101,7 @@ const handleEdit = (e) => {
                 </form>
             </div>
         </main>
-        <Footer />
+        <LandingFooter />
       </>
       )
 }

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import LandingFooter from '../components/LandingFooter';
+import LandingHeader from '../components/LangingHeader';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -19,7 +21,9 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
+    <>
+    <LandingHeader />
+    <main className="flex justify-center items-center h-screen bg-gray-100">
       <div className="max-w-lg w-full p-10 bg-white rounded-lg shadow-md border border-gray-200">
       <div className="text-center">
         <h2 className="text-3xl font-semibold text-center mb-8">Sign Up</h2>
@@ -78,7 +82,9 @@ const Register = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </main>
+    <LandingFooter />
+    </>
   );
 };
 
