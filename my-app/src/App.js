@@ -11,6 +11,9 @@ import Search from './pages/Search'
 import RecieverProfile from './pages/ReceiverProfile'
 import RecieverProfileEdit from './pages/RecieverProfileEdit'
 import Setting from './pages/Setting'
+import DonatorSetting from './pages/DonatorSetting';
+import DonatorProfile from './pages/DonatorProfile';
+import DonatorProfileEdit from './pages/DonatorProfileEdit';
 
 
 function App() {
@@ -28,6 +31,9 @@ function App() {
         <Route path='/recieverprofile' element={<RecieverProfile />}></Route>
         <Route path='/recieveredit' element={<RecieverProfileEdit />}></Route>
         <Route path='/setting' element={<Setting />}></Route>
+        <Route path='/donatorsetting' element={<DonatorSetting />}></Route>
+        <Route path='/donatorprofile' element={<DonatorProfile />}></Route>
+        <Route path='/donatoredit' element={<DonatorProfileEdit />}></Route>
       </Routes>
     </BrowserRouter>
     </ProfileProvider>

@@ -21,8 +21,12 @@ const SearchHeader = () => {
           Search
         </button>
       </form>
-      <div className="text-[#F5A65B]">
-        <a href="/" className="flex items-center space-x-1">
+      <div className="flex space-x-6 text-[#F5A65B]">  {/* Add flex and spacing here */}
+        <a href="/donatorsetting" className="flex items-center space-x-1">
+          <i className="fa-regular fa-user"></i>
+          <span>Setting</span>
+        </a>
+        <a href='/donatorprofile' className="flex items-center space-x-1">
           <i className="fa-regular fa-user"></i>
           <span>My Account</span>
         </a>

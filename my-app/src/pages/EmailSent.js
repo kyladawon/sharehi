@@ -18,7 +18,7 @@ const EmailSent = () => {
             type="submit"
             className="w-full bg-customGreen text-white py-2 rounded-md hover:bg-black transition duration-200"
           >
-            <Link to="/">Back to Home</Link>
+            <Link to="/login">Back to Login</Link>
           </button>
         </form>
       </div>
