@@ -63,13 +63,13 @@ const Register = () => {
             type="submit"
             className="w-full bg-customGreen text-white py-2 rounded-md active:bg-black transition duration-200"
           >
-            <Link to="/">Sign Up as Receiver</Link>
+            <Link to="/login">Sign Up as Receiver</Link>
           </button>
           <button
             type="submit"
             className="w-full bg-customGreen text-white py-2 rounded-md active:bg-black transition duration-200"
           >
-            <Link to="/search">Sign Up as Donator</Link>
+            <Link to="/login">Sign Up as Donator</Link>
           </button>
         </form>
         <div className="text-center text-orange-500 mt-4">

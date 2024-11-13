@@ -56,7 +56,7 @@ const Login = () => {
             type="submit"
             className="w-full bg-customGreen text-white py-2 rounded-md hover:bg-black transition duration-200"
           >
-            <Link to="/">Login as Receiver</Link>
+            <Link to="/recieverprofile">Login as Receiver</Link>
           </button>
           <button
             type="submit"

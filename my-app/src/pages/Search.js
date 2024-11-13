@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import Header from '../components/Header';
+import React from 'react';
+import SearchHeader from '../components/SearchHeader';
 import Footer from '../components/Footer';
 //import { Link } from 'react-router-dom';
 
 const Search = () => {
     return (
         <>
-        <Header />
+        <SearchHeader />
         <main className="flex justify-center items-center w-full h-full min-h-screen text-center">
             <div className="container h-full">
                 <div className="middle pb-32 h-full">
