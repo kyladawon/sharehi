@@ -6,9 +6,12 @@ import SearchHeader from '../components/SearchHeader';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 
+const getRandomImageUrl = () => `https://picsum.photos/200/200?random=${Math.floor(Math.random() * 1000)}`;
+
 const DonatorProfile = () => {
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [profileImageUrl] = useState(getRandomImageUrl());
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -42,6 +45,15 @@ const DonatorProfile = () => {
                 >
                     <Link to="/donatoredit">Edit Profile</Link>
                 </button>
+                <div className="flex flex-col items-center">
+                <div className="relative w-32 h-32 mb-4">
+                    <img
+                    src={profileImageUrl}
+                    alt="Profile"
+                    className="rounded-full w-full h-full object-cover cursor-pointer"
+                    />
+                </div>
+                </div>
                 <div className="text-center mt-4">
                     {profile ? (
                         <div>
