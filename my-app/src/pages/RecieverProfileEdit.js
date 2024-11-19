@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
-import LandingFooter from '../components/LandingFooter';
+import Footer from '../components/Footer';
 import { auth, db } from '../firebase';
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
@@ -153,7 +153,7 @@ const defaultDescription = "A brief description of your organization.";
                 </form>
             </div>
         </main>
-        <LandingFooter />
+        <Footer />
       </>
       )
 }

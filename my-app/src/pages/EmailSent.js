@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
-import LandingFooter from '../components/LandingFooter';
+import Footer from '../components/Footer';
 
 const EmailSent = () => {
   const handleSubmit = (e) => {
@@ -27,7 +27,7 @@ const EmailSent = () => {
         </form>
       </div>
     </main>
-    <LandingFooter />
+    <Footer />
     </>
   );
 };

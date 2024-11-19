@@ -4,7 +4,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import Header from '../components/Header';
-import LandingFooter from '../components/LandingFooter';
+import Footer from '../components/Footer';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -98,7 +98,7 @@ const Login = () => {
         </div>
       </div>
     </main>
-    <LandingFooter />
+    <Footer />
     </>
   );
 };

@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { auth, db } from '../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
-import LandingFooter from '../components/LandingFooter';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 const Register = () => {
@@ -106,7 +106,7 @@ const Register = () => {
         </div>
       </div>
     </main>
-    <LandingFooter />
+    <Footer />
     </>
   );
 };

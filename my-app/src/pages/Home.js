@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
-import LandingFooter from '../components/LandingFooter';
+import Footer from '../components/Footer';
 
 const Home = () => {
     return (
@@ -16,7 +16,7 @@ const Home = () => {
         <h2 className="text-3xl text-customGreen font-semibold mb-10">Welcome to SHARE HI!</h2>
         </div>
         </main>
-      <LandingFooter />
+      <Footer />
       </>
       )
 }

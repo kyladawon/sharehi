@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../firebase';
 import Header from '../components/Header';
-import LandingFooter from '../components/LandingFooter';
+import Footer from '../components/Footer';
 
 const Forgotpassword = () => {
   const [email, setEmail] = useState('');
@@ -67,7 +67,7 @@ const Forgotpassword = () => {
         </form>
       </div>
     </div>
-    <LandingFooter />
+    <Footer />
     </>
   );
 };

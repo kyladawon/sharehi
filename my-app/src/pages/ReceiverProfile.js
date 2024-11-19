@@ -3,7 +3,7 @@ import { auth, db} from '../firebase';
 import { doc, getDoc, updateDoc} from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import Header from '../components/Header';
-import LandingFooter from '../components/LandingFooter';
+import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 
 const getRandomImageUrl = () => `https://picsum.photos/200/200?random=${Math.floor(Math.random() * 1000)}`;
@@ -221,7 +221,7 @@ const RecieverProfile = () => {
                 )}
             </div>
         </main>
-        <LandingFooter />
+        <Footer />
         </>
       )
 }
