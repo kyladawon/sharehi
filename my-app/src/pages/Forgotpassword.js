@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../firebase';
-import LandingHeader from '../components/LangingHeader';
+import Header from '../components/Header';
 import LandingFooter from '../components/LandingFooter';
 
 const Forgotpassword = () => {
@@ -38,7 +38,7 @@ const Forgotpassword = () => {
 
   return (
     <>
-    <LandingHeader />
+    <Header />
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <div className="max-w-lg w-full p-10 bg-white rounded-lg shadow-md border border-gray-200">
       <div className="text-center mt-4">

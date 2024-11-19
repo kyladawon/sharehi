@@ -1,11 +1,11 @@
 import React from 'react';
-import LandingHeader from '../components/LangingHeader';
+import Header from '../components/Header';
 import LandingFooter from '../components/LandingFooter';
 
 const Home = () => {
     return (
       <>
-      <LandingHeader />
+      <Header />
         <main className="flex justify-center items-center w-full h-full min-h-screen text-center">
         <div className="container h-full flex flex-col items-center">
         <img 

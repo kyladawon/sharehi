@@ -4,7 +4,7 @@ import { auth, db } from '../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import LandingFooter from '../components/LandingFooter';
-import LandingHeader from '../components/LangingHeader';
+import Header from '../components/Header';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -45,7 +45,7 @@ const Register = () => {
 
   return (
     <>
-    <LandingHeader />
+    <Header />
     <main className="flex justify-center items-center h-screen bg-gray-100">
       <div className="max-w-lg w-full p-10 bg-white rounded-lg shadow-md border border-gray-200">
       <div className="text-center">
