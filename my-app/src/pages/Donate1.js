@@ -1,49 +1,38 @@
 import React, { useState, useEffect } from 'react';
-import { db } from '../firebase';
-import { doc, getDoc } from "firebase/firestore";
 import Header from '../components/Header';
 import LandingFooter from '../components/LandingFooter';
-import { useParams, useNavigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const getRandomImageUrl = () => `https://picsum.photos/200/200?random=${Math.floor(Math.random() * 1000)}`;
 
-const ReceiverProfileViewOnly = () => {
+const Donate1 = () => {
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([]);
     const [profileImageUrl] = useState(getRandomImageUrl());
-    const { receiverId } = useParams();
-    const navigate = useNavigate(); // 페이지 이동을 위한 useNavigate 훅
 
     useEffect(() => {
-        const fetchProfile = async () => {
-            const docRef = doc(db, "users", receiverId); // Fetch by receiverId
-            const docSnap = await getDoc(docRef);
-            if (docSnap.exists()) {
-                const data = docSnap.data();
-                setProfile(data);
-                setProducts(data.products || []);
-            } else {
-                console.log("No such document!");
-            }
-            setLoading(false);
-        };
-
-        fetchProfile();
-    }, [receiverId]);
+        // 기본 데이터 설정 (Firebase 연동 없이 직접 설정할 수도 있습니다)
+        setProfile({
+            username: "Example Organization",
+            orgcategory: "Charity",
+            description: "We provide assistance to those in need.",
+            address: "123 Charity St.",
+            contactinfo: "contact@example.org",
+        });
+        setProducts([
+            { type: "Food", quantity: 10, additionalDescription: "Fresh produce" },
+            { type: "Clothing", quantity: 5, additionalDescription: "Winter coats" },
+        ]);
+        setLoading(false);
+    }, []);
 
     if (loading) {
         return <p>Loading profile...</p>;
     }
 
     const defaultDescription = "A brief description of your organization.";
-
-    // Donate 버튼 클릭 시 새로운 페이지로 이동하는 함수
-    const handleDonateClick = () => {
-        navigate('/donate1'); // '/donate1' 페이지로 이동
-    };
 
     return (
         <>
@@ -134,7 +123,7 @@ const ReceiverProfileViewOnly = () => {
                     <button
                         type="button"
                         className="w-auto px-6 bg-customGreen text-white py-2 rounded-md hover:bg-black transition duration-200 text-sm"
-                        onClick={handleDonateClick} // 버튼 클릭 시 페이지 이동
+                        onClick={() => window.location.href = '/'} // 예시: Donate 버튼을 클릭 시 '/'로 이동
                     >
                         Donate
                     </button>
@@ -146,4 +135,4 @@ const ReceiverProfileViewOnly = () => {
     );
 }
 
-export default ReceiverProfileViewOnly;
+export default Donate1;

@@ -15,6 +15,7 @@ import DonatorSetting from './pages/DonatorSetting';
 import DonatorProfile from './pages/DonatorProfile';
 import DonatorProfileEdit from './pages/DonatorProfileEdit';
 import DonationConfirm from './pages/DonationConfirm'
+import Donate1 from './pages/Donate1';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path='/donatorprofile' element={<DonatorProfile />}></Route>
         <Route path='/donatoredit' element={<DonatorProfileEdit />}></Route>
         <Route path='/donationconfirmed' element={<DonationConfirm />}></Route>
+        <Route path='/donate1' element={<Donate1 />}></Route>
         <Route path="/receiver/:receiverId/view" element={<ReceiverProfileViewOnly />} />
       </Routes>
     </BrowserRouter>
