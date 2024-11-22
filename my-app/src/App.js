@@ -30,13 +30,13 @@ function App() {
         <Route path='/login' element={<Login />}></Route>
         <Route path='/forgotpassword' element={<Forgotpassword />}></Route>
         <Route path='/emailsent' element={<EmailSent />}></Route>
-        <Route path='/search' element={<ProtectedRoute><Search /></ProtectedRoute>}></Route>
-        <Route path='/recieverprofile' element={<ProtectedRoute><RecieverProfile /></ProtectedRoute>}></Route>
-        <Route path='/recieveredit' element={<ProtectedRoute><RecieverProfileEdit /></ProtectedRoute>}></Route>
-        <Route path='/setting' element={<ProtectedRoute><Setting /></ProtectedRoute>}></Route>
-        <Route path='/donatorsetting' element={<ProtectedRoute><DonatorSetting /></ProtectedRoute>}></Route>
-        <Route path='/donatorprofile' element={<ProtectedRoute><DonatorProfile /></ProtectedRoute>}></Route>
-        <Route path='/donatoredit' element={<ProtectedRoute><DonatorProfileEdit /></ProtectedRoute>}></Route>
+        <Route path='/search' element={<Search />}></Route>
+        <Route path='/recieverprofile' element={<RecieverProfile />}></Route>
+        <Route path='/recieveredit' element={<RecieverProfileEdit />}></Route>
+        <Route path='/setting' element={<Setting />}></Route>
+        <Route path='/donatorsetting' element={<DonatorSetting />}></Route>
+        <Route path='/donatorprofile' element={<DonatorProfile />}></Route>
+        <Route path='/donatoredit' element={<DonatorProfileEdit />}></Route>
         <Route path='/donationconfirmed' element={<DonationConfirm />}></Route>
         <Route path='/donate1' element={<Donate1 />}></Route>
         <Route path="/receiver/:receiverId/view" element={<ReceiverProfileViewOnly />} />

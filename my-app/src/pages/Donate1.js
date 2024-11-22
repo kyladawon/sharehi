@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
-import LandingFooter from '../components/LandingFooter';
+import Footer from '../components/Footer';
 
 const QuantityControl = ({ quantity, setQuantity }) => {
     return (
@@ -128,7 +128,7 @@ const Donate1 = () => {
                     </div>
                 </div>
             </main>
-            <LandingFooter />
+            <Footer />
         </>
     );
 };
