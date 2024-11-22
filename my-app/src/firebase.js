@@ -7,76 +7,20 @@ import { addDoc, collection } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  apiKey: process.env.REACT_APP_FB_APIKEY,
+  authDomain: process.env.REACT_APP_FB_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_FB_PROJECTID,
+  storageBucket: process.env.REACT_APP_FB_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_FB_MESSAGINGSENDERID,
+  appId: process.env.REACT_APP_FB_APPID,
 };
-
-// admin.initializeApp({
-//   credential: admin.credential.cert({
-//       type: process.env.FB_ADMIN_TYPE,
-//       project_id: process.env.FB_ADMIN_PROJECTID,
-//       private_key_id: process.env.FB_ADMIN_PK_ID,
-//       private_key: process.env.FB_ADMIN_PK_KEY.replace(/\\n/g, '\n'), 
-//       client_email: process.env.FB_ADMIN_CLIENTEMAIL,
-//       client_id: process.env.FB_ADMIN_CLIENTID,
-//       auth_uri: process.env.FB_ADMIN_AUTH_URL,
-//       token_uri: process.env.FB_ADMIN_AUTH_TOK,
-//       auth_provider_x509_cert_url: process.env.FB_ADMIN_AUTH_PROVIDER_URL,
-//       client_x509_cert_url: process.env.FB_ADMIN_CLIENT_CERT_URL,
-//   }) 
-// });
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Firebase services
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Test Firebase Admin (Firestore)
-// async function testAdminFirestore() {
-//   try {
-//       const docRef = await admin.firestore().collection('adminTest').add({
-//           name: 'Admin Test',
-//           role: 'Admin',
-//       });
-//       console.log('Document written with ID (Admin SDK): ', docRef.id);
-//   } catch (error) {
-//       console.error('Error adding document with Admin SDK: ', error);
-//   }
-// }
+export {app, auth, db};
 
-// Test Firebase Client SDK (Auth and Firestore)
-// async function testClientSDK() {
-//   try {
-//       // Test Firestore
-//       const docRef = await addDoc(collection(db, 'clientTest'), {
-//           name: 'Client Test',
-//           role: 'User',
-//       });
-//       console.log('Document written with ID (Client SDK): ', docRef.id);
-
-//       // Test Authentication (Sign up a user)
-//       const userCredential = await auth.createUserWithEmailAndPassword('testuser@example.com', 'password123');
-//       console.log('User created with UID (Client SDK): ', userCredential.user.uid);
-
-//   } catch (error) {
-//       console.error('Error with Firebase Client SDK: ', error);
-//   }
-// }
-
-// Run both tests
-// async function runTests() {
-//   console.log('Running Firebase Admin Firestore Test...');
-//   await testAdminFirestore();
-
-//   console.log('Running Firebase Client SDK Test...');
-//   await testClientSDK();
-// }
-
-// // Execute the test functions
-// runTests().catch(console.error);
-
-export { app, auth, db};

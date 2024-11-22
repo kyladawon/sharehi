@@ -1,9 +1,11 @@
-import React, { useState, useEffect} from 'react';
-import { db} from '../firebase';
+import React, { useState, useEffect } from 'react';
+import { db } from '../firebase';
 import { doc, getDoc } from "firebase/firestore";
 import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { useParams } from 'react-router-dom';
+import LandingFooter from '../components/LandingFooter';
+import { useParams, useNavigate } from 'react-router-dom';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const getRandomImageUrl = () => `https://picsum.photos/200/200?random=${Math.floor(Math.random() * 1000)}`;
 
@@ -13,6 +15,7 @@ const ReceiverProfileViewOnly = () => {
     const [products, setProducts] = useState([]);
     const [profileImageUrl] = useState(getRandomImageUrl());
     const { receiverId } = useParams();
+    const navigate = useNavigate(); // 페이지 이동을 위한 useNavigate 훅
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -36,19 +39,25 @@ const ReceiverProfileViewOnly = () => {
     }
 
     const defaultDescription = "A brief description of your organization.";
+
+    // Donate 버튼 클릭 시 새로운 페이지로 이동하는 함수
+    const handleDonateClick = () => {
+        navigate('/donate1'); // '/donate1' 페이지로 이동
+    };
+
     return (
         <>
         <Header />
         <main className="flex justify-center items-center h-full bg-gray-100 py-10">
             <div className="relative w-full max-w-4xl p-10 bg-white rounded-lg shadow-md border border-gray-200">
                 <div className="flex flex-col items-center">
-                <div className="relative w-32 h-32 mb-4">
-                    <img
-                    src={profileImageUrl}
-                    alt="Profile"
-                    className="rounded-full w-full h-full object-cover cursor-pointer"
-                    />
-                </div>
+                    <div className="relative w-32 h-32 mb-4">
+                        <img
+                            src={profileImageUrl}
+                            alt="Profile"
+                            className="rounded-full w-full h-full object-cover cursor-pointer"
+                        />
+                    </div>
                 </div>
                 <div className="text-center mt-4">
                     {profile ? (
@@ -101,30 +110,31 @@ const ReceiverProfileViewOnly = () => {
                     <h1 className="text-3xl font-semibold text-center mb-6">What we need ..</h1>
                 </div>
                 <div className="w-full h-96 bg-white-500 rounded-md mb-6 p-4 overflow-y-auto">
-                <div className="grid grid-cols-3 gap-2 h-full">
-                    {products.length > 0 ? (
-                        products.map((product, index) => (
-                            <div
-                            key={index} 
-                            className="relative flex flex-col justify-between p-2 bg-white border border-gray-300 rounded-md shadow-sm h-20 px-2">
-                                <span className="text-xs text-gray-500 mb-1">{product.additionalDescription || "Additional Info"}</span>
-                                <span className="font-medium font-semibold px-5">{product.type || "N/A"}</span>
-                                <span className="text-xs text-gray-500 mt-1">{product.description || "No description"}</span>
-                                <button className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-400 text-white border rounded-md px-1 py-0.2">
-                                    {product.quantity || "N/A"}
-                                </button>
-                            </div>
-                        ))
-                    ) : (
-                        <p className="text-gray-500 col-span-2 text-center">No products added yet.</p>
-                    )}
-                </div>
+                    <div className="grid grid-cols-3 gap-2 h-full">
+                        {products.length > 0 ? (
+                            products.map((product, index) => (
+                                <div
+                                    key={index} 
+                                    className="relative flex flex-col justify-between p-2 bg-white border border-gray-300 rounded-md shadow-sm h-20 px-2">
+                                        <span className="text-xs text-gray-500 mb-1">{product.additionalDescription || "Additional Info"}</span>
+                                        <span className="font-medium font-semibold px-5">{product.type || "N/A"}</span>
+                                        <span className="text-xs text-gray-500 mt-1">{product.description || "No description"}</span>
+                                        <button className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-400 text-white border rounded-md px-1 py-0.2">
+                                            {product.quantity || "N/A"}
+                                        </button>
+                                </div>
+                            ))
+                        ) : (
+                            <p className="text-gray-500 col-span-2 text-center">No products added yet.</p>
+                        )}
+                    </div>
                 </div>
 
                 <div className="flex justify-center mt-8">
                     <button
                         type="button"
                         className="w-auto px-6 bg-customGreen text-white py-2 rounded-md hover:bg-black transition duration-200 text-sm"
+                        onClick={handleDonateClick} // 버튼 클릭 시 페이지 이동
                     >
                         Donate
                     </button>
@@ -133,6 +143,7 @@ const ReceiverProfileViewOnly = () => {
         </main>
         <Footer />
         </>
-      )
+    );
 }
+
 export default ReceiverProfileViewOnly;
