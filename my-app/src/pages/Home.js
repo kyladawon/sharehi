@@ -1,11 +1,11 @@
 import React from 'react';
-import LandingHeader from '../components/LangingHeader';
-import LandingFooter from '../components/LandingFooter';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const Home = () => {
     return (
       <>
-      <LandingHeader />
+      <Header />
         <main className="flex justify-center items-center w-full h-full min-h-screen text-center">
         <div className="container h-full flex flex-col items-center">
         <img 
@@ -16,7 +16,7 @@ const Home = () => {
         <h2 className="text-3xl text-customGreen font-semibold mb-10">Welcome to SHARE HI!</h2>
         </div>
         </main>
-      <LandingFooter />
+      <Footer />
       </>
       )
 }

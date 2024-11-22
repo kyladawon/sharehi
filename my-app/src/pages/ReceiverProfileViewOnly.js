@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import { db} from '../firebase';
 import { doc, getDoc } from "firebase/firestore";
 import Header from '../components/Header';
-import LandingFooter from '../components/LandingFooter';
+import Footer from '../components/Footer';
 import { useParams } from 'react-router-dom';
 
 const getRandomImageUrl = () => `https://picsum.photos/200/200?random=${Math.floor(Math.random() * 1000)}`;
@@ -131,7 +131,7 @@ const ReceiverProfileViewOnly = () => {
                 </div>
             </div>
         </main>
-        <LandingFooter />
+        <Footer />
         </>
       )
 }
