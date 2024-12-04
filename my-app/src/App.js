@@ -9,13 +9,14 @@ import EmailSent from './pages/EmailSent'
 import Search from './pages/Search'
 import RecieverProfile from './pages/ReceiverProfile'
 import RecieverProfileEdit from './pages/RecieverProfileEdit'
-import ReceiverProfileViewOnly from './pages/ReceiverProfileViewOnly'
+import ReceiverProfileView from './pages/ReceiverProfileView'
 import Setting from './pages/Setting'
 import DonatorSetting from './pages/DonatorSetting';
 import DonatorProfile from './pages/DonatorProfile';
 import DonatorProfileEdit from './pages/DonatorProfileEdit';
 import DonationConfirm from './pages/DonationConfirm'
 import Donate1 from './pages/Donate1';
+import DonateDatePicker from './pages/DonateDatePicker'
 
 
 function App() {
@@ -36,8 +37,9 @@ function App() {
         <Route path='/donatorprofile' element={<DonatorProfile />}></Route>
         <Route path='/donatoredit' element={<DonatorProfileEdit />}></Route>
         <Route path='/donationconfirmed' element={<DonationConfirm />}></Route>
-        <Route path='/donate1' element={<Donate1 />}></Route>
-        <Route path="/receiver/:receiverId/view" element={<ReceiverProfileViewOnly />} />
+        <Route path='/donate/:receiverId' element={<Donate1 />}></Route>
+        <Route path='/donatedatepicker/:receiverId' element={<DonateDatePicker />}></Route>
+        <Route path="/receiver/:receiverId" element={<ReceiverProfileView />} />
       </Routes>
     </BrowserRouter>
   )

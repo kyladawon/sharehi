@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate} from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { db } from '../firebase';
 import { doc, getDoc } from "firebase/firestore";
 import SearchHeader from '../components/SearchHeader';
@@ -7,34 +7,13 @@ import Footer from '../components/Footer';
 
 const getRandomImageUrl = () => `https://picsum.photos/200/200?random=${Math.floor(Math.random() * 1000)}`;
 
-const QuantityControl = ({ quantity, setQuantity }) => {
-    return (
-        <div className="flex items-center space-x-2 mt-2">
-            <button
-                onClick={() => setQuantity(quantity > 0 ? quantity - 1 : 0)}
-                className="bg-gray-300 p-1 rounded-md text-base"
-            >
-                -
-            </button>
-            <span className="text-lg font-semibold">{quantity}</span>
-            <button
-                onClick={() => setQuantity(quantity + 1)}
-                className="bg-gray-300 p-1 rounded-md text-base"
-            >
-                +
-            </button>
-        </div>
-    );
-};
-
-const Donate1 = () => {
+const ReceiverProfileView = () => {
     const { receiverId } = useParams();
     const navigate = useNavigate();
     const [receiver, setReceiver] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [items, setItems] = useState([]);
-    const [selectedQuantities, setSelectedQuantities] = useState({});
     const [profileImageUrl] = useState(getRandomImageUrl());
+    const [items, setItems] = useState([]);
 
     useEffect(() => {
         const fetchReceiver = async () => {
@@ -44,12 +23,7 @@ const Donate1 = () => {
                 if (docSnap.exists()) {
                     const data = docSnap.data();
                     setReceiver(data);
-                    setItems(data.products || []); // Assuming 'products' is the field for requested items
-                    const initialQuantities = data.products.reduce((acc, item, index) => {
-                        acc[index] = 0; // Initialize quantities for each item to 0
-                        return acc;
-                    }, {});
-                    setSelectedQuantities(initialQuantities);
+                    setItems(data.products || []);
                 } else {
                     console.log('No such document!');
                 }
@@ -64,22 +38,7 @@ const Donate1 = () => {
     }, [receiverId]);
 
     const handleDonate = () => {
-        console.log("Donation Summary:", selectedQuantities);
-        const donationItems = {
-            items: items.map((item, index) => ({
-                type: item.type,
-                description: item.description,
-                quantity: selectedQuantities[index] || 0,
-            })).filter(item => item.quantity > 0), // Only include items with quantities > 0
-        };
-        console.log("Prepared Donation Items:", donationItems);
-    
-        navigate(`/donatedatepicker/${receiverId}`, {
-            state: {
-                receiverId,
-                donationItems,
-            },
-        });
+        navigate(`/donate/${receiverId}`); // Adjust the donation page route as needed
     };
 
     if (loading) {
@@ -100,7 +59,6 @@ const Donate1 = () => {
                             />
                         </div>
                     </div>
-
                     <div className="text-center mt-4">
                         {receiver ? (
                             <div>
@@ -124,54 +82,68 @@ const Donate1 = () => {
                             <p>No profile data found.</p>
                         )}
                     </div>
-                    <div className="text-center mt-4">
-                        <h2 className="text-2xl font-semibold mb-6">Select Items to Donate</h2>
+                    <div className="w-full h-96 bg-gray-100 border border-gray-300 rounded-md mb-6 p-4 overflow-y-auto auto">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 h-full">
+                        {items.length > 0 ? (
+                            items.map((item, index) => (
+                                <div 
+                                    key={index}
+                                    className="relative overflow-hidden rounded-md shadow-lg collage-item"
+                                >
+                                    <img 
+                                        src={getRandomImageUrl()} 
+                                        alt={item.type} 
+                                        className="w-full h-full object-cover"
+                                    />
+                                     <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity flex flex-col items-center justify-center">
+                                        <p className="text-white font-bold">{item.type || "N/A"}</p>
+                                        <p className="text-gray-200">Quantity: {item.quantity || "N/A"}</p>
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <p className="text-gray-500 col-span-2 text-center">No products added yet.</p>
+                        )}
                     </div>
-                    <div className="grid grid-cols-2 gap-4 h-auto bg-gray-100 border border-gray-300 rounded-md p-4 overflow-y-auto">
+                    </div>
+                    <div className="text-center mt-4">
+                        <h2 className="text-2xl font-semibold mb-6">Requested Items</h2>
+                    </div>
+                    <div className="w-full h-96 bg-white-500 rounded-md mb-6 p-4 overflow-y-auto">
+                    <div className="grid grid-cols-3 gap-2 h-full">
                         {items.length > 0 ? (
                             items.map((item, index) => (
                                 <div
                                     key={index}
-                                    className="flex items-center p-4 bg-white border border-gray-300 rounded-md shadow-sm"
+                                    className="relative flex flex-col justify-between p-2 bg-white border border-gray-300 rounded-md shadow-sm h-24 px-2"
                                 >
-                                    <img
-                                        src={getRandomImageUrl()}
-                                        alt={item.type}
-                                        className="w-20 h-20 object-cover rounded-md mr-4"
-                                    />
-                                    <div className="flex-1">
-                                        <span className="font-medium">{item.type || 'N/A'}</span>
-                                        <span className="text-xs text-gray-500 mt-1">{item.description || 'No description available'}</span>
-                                        <QuantityControl
-                                            quantity={selectedQuantities[index]}
-                                            setQuantity={(newQuantity) => {
-                                                setSelectedQuantities((prev) => ({
-                                                    ...prev,
-                                                    [index]: newQuantity,
-                                                }));
-                                            }}
-                                        />
-                                    </div>
+                                    <span className="font-medium">{item.type || 'N/A'}</span>
+                                    <span className="text-xs text-gray-500 mt-1">{item.description || 'No description available'}</span>
+                                    <button className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-400 text-white border rounded-md px-3 py-0.5">
+                                        {item.quantity || 'N/A'}
+                                    </button>
                                 </div>
                             ))
                         ) : (
                             <p className="text-gray-500 col-span-2 text-center">No items requested.</p>
                         )}
                     </div>
-                    {/* 3. Next 버튼 구간 */}
+                    </div>
+
                     <div className="flex justify-center mt-8">
                         <button
+                            type="button"
                             onClick={handleDonate}
-                            className="w-auto px-8 bg-green-500 text-white py-2 rounded-md hover:bg-green-700 transition duration-200 text-lg"
+                            className="w-auto px-6 bg-customGreen text-white py-2 rounded-md hover:bg-black transition duration-200 text-sm"
                         >
-                            Choose Date of Donation
+                            Donate
                         </button>
                     </div>
                 </div>
-            </main>
-            <Footer />
+        </main>
+        <Footer />
         </>
     );
-};
+}
 
-export default Donate1;
+export default ReceiverProfileView;

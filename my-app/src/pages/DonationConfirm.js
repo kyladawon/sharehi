@@ -1,13 +1,12 @@
 import React from 'react';
+import { useLocation, Link } from 'react-router-dom';
 import SearchHeader from '../components/SearchHeader';
 import Footer from '../components/Footer';
-import { Link } from 'react-router-dom';
 
 const DonationConfirm = () => {
-    const handleSubmit = (e) => {
-      console.log('Donation Confirmed');
-    };
-  
+  const location = useLocation();
+  const selectedDate = location.state?.selectedDate;
+
     return (
       <>
       <SearchHeader />
@@ -24,11 +23,20 @@ const DonationConfirm = () => {
           <h1 className="text-3xl font-semibold text-center mb-6">Thank You</h1>
           <h2 className="font-semibold text-center mb-6">Your Donation is Confirmed</h2>
           <p className="text-gray-700 font-medium text-center mb-8">Your kindess has made the world into a better place.</p>
+          {selectedDate ? (
+          <p className="text-orange-700 font-medium text-center mb-16">
+          Donation scheduled for: <span className="font-semibold">{new Date(selectedDate).toDateString()}</span>
+          </p>
+          ) : (
+          <p className="text-red-500 font-medium text-center mb-16">
+          No date selected for the donation.
+          </p>
+          )}
         </div>
-          <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="flex justify-center mb-6">
+          <form className="space-y-6">
+          <div className="flex justify-center">
             <button
-              type="submit"
+              type="button"
               className="w-auto px-4 bg-white text-customGreen border border-customGreen py-2 rounded-md shadow-lg hover:bg-gray-500 hover:text-white transition duration-200"
             >
               <Link to="/search">Back to Search</Link>

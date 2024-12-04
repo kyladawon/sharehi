@@ -74,14 +74,6 @@ const RecieverProfile = () => {
                 >
                     <Link to="/recieveredit">Edit Profile</Link>
                 </button>
-                <div className="flex justify-center mt-8">
-                    <Link
-                        to={`/receiver/${auth.currentUser?.uid}/view`} // Link to view-only route with receiver's ID
-                        className="absolute top-20 right-6 w-auto px-6 bg-gray-400 text-white py-2 rounded-md hover:bg-gray-500 transition duration-200 text-sm"
-                    >
-                        View as Visitor
-                    </Link>
-                </div>
                 <div className="flex flex-col items-center">
                 <div className="relative w-32 h-32 mb-4">
                     <img
